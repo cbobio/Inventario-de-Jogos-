@@ -1,0 +1,6 @@
+CREATE TABLE usuario (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome_usuario VARCHAR(400) NOT NULL,
+    idPsn VARCHAR(300) NOT NULL,
+    senha VARCHAR(200) NOT NULL
+);

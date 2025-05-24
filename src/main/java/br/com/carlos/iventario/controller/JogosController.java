@@ -55,7 +55,7 @@ public class JogosController {
                 .ok("Registro Excluido");
     }
     ///EndPoint para criar um Registro (create)
-    @Operation(summary = "Criar um Registro", tags = "AtivosController")
+    @Operation(summary = "Criar um Registro", tags = "JogosController")
     @PostMapping
     ResponseEntity<JogosDto> criarJogo(@RequestBody JogosDto jogosDto){
         return ResponseEntity
