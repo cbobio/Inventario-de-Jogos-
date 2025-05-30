@@ -11,7 +11,7 @@ public class UsuarioDto {
     private String idPsn;
     private String senha;
 
-    private UsuarioDto(TbUsuario tbUsuario){
+    public UsuarioDto(TbUsuario tbUsuario){
         this.nome = tbUsuario.getNome();
         this.idPsn = tbUsuario.getIdPsn();
         this.senha = tbUsuario.getSenha();
