@@ -17,6 +17,7 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
     @Autowired
     ModelMapper modelMapper;
+
     /// Método de buscar todos (findAll)
     public List<UsuarioDto> listarTodos(){
         List<TbUsuario> tbUsuarioList = usuarioRepository.findAll();

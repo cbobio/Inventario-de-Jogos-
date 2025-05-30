@@ -1,6 +1,6 @@
 package br.com.carlos.iventario.controller;
 
-import br.com.carlos.iventario.dto.JogosDto;
+
 import br.com.carlos.iventario.dto.UsuarioDto;
 import br.com.carlos.iventario.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;

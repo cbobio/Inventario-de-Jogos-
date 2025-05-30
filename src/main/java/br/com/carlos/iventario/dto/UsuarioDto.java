@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UsuarioDto {
     private String nome;
-    private String idPsn;
+    private String nomePsn;
     private String senha;
 
     public UsuarioDto(TbUsuario tbUsuario){
         this.nome = tbUsuario.getNome();
-        this.idPsn = tbUsuario.getIdPsn();
+        this.nomePsn = tbUsuario.getNomePsn();
         this.senha = tbUsuario.getSenha();
     }
 }

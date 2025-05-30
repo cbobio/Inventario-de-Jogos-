@@ -17,8 +17,8 @@ public class TbUsuario implements Serializable {
     @Column(name = "nome_usuario", nullable = false, length = 400)
     private String nome;
 
-    @Column(name = "idPsn",nullable = false, length = 300)
-    private String idPsn;
+    @Column(name = "nome_Psn", nullable = false, length = 300)
+    private String nomePsn;
 
     @Column(name = "senha", nullable = false, length = 200)
     private String senha;
