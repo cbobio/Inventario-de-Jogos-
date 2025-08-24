@@ -22,4 +22,7 @@ public class TbUsuario implements Serializable {
 
     @Column(name = "senha", nullable = false, length = 200)
     private String senha;
+
+    @Column(name = "tipo_usuario", nullable = false, length = 40)
+    private String tipo;
 }
