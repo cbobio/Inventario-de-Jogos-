@@ -1,5 +1,4 @@
 package br.com.carlos.iventario.service;
-
 import br.com.carlos.iventario.dto.UsuarioDto;
 import br.com.carlos.iventario.entity.TbUsuario;
 import br.com.carlos.iventario.repository.UsuarioRepository;
