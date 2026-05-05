@@ -1,4 +1,4 @@
-package br.com.carlos.iventario.exceptions;
+package br.com.carlos.iventario.exceptions.erroResponse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
