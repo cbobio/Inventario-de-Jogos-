@@ -1,6 +1,7 @@
 package br.com.carlos.iventario.service;
 import br.com.carlos.iventario.dto.JogosDto;
 import br.com.carlos.iventario.entity.TbJogos;
+import br.com.carlos.iventario.exceptions.RegistroNaoEncontradoException;
 import br.com.carlos.iventario.repository.JogosRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class JogosService {
     public List<JogosDto> listarTodos(){
         List<TbJogos> tbJogosList = jogosRepository.findAll();
         if(tbJogosList.isEmpty()){
-            throw new RuntimeException("Não foi Encontrado Nenhum Registro!!!!");
+            throw new RegistroNaoEncontradoException("Não foi Encontrado Nenhum Registro!!!!");
         }
         return tbJogosList
                 .stream()
@@ -30,7 +31,7 @@ public class JogosService {
     public JogosDto findByIdJogos(Long id){
         Optional<TbJogos> tbJogosOptional = jogosRepository.findById(id);
         if (tbJogosOptional.isEmpty()) {
-            throw new RuntimeException("Não foi Encontrado Nenhum Registro!!!!");
+            throw new RegistroNaoEncontradoException("Não foi Encontrado Nenhum Registro!!!!");
         }
         return new JogosDto(tbJogosOptional.get());
     }
@@ -41,7 +42,7 @@ public class JogosService {
             modelMapper.map(jogosDto, tbJogosOptional.get());
             return new JogosDto(jogosRepository.save(tbJogosOptional.get()));
         } catch (Exception e) {
-            throw new RuntimeException("Não foi Encontrado Nenhum Registro!!!!");
+            throw new RegistroNaoEncontradoException("Não foi Encontrado Nenhum Registro!!!!");
         }
     }
     ///Método de Deletar um Registro (Delete)

@@ -1,6 +1,8 @@
 package br.com.carlos.iventario.service;
 import br.com.carlos.iventario.dto.UsuarioDto;
 import br.com.carlos.iventario.entity.TbUsuario;
+import br.com.carlos.iventario.exceptions.RegistroNaoEncontradoException;
+import br.com.carlos.iventario.exceptions.DuplicateResourceException;
 import br.com.carlos.iventario.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class UsuarioService {
     public List<UsuarioDto> listarTodos(){
         List<TbUsuario> tbUsuarioList = usuarioRepository.findAll();
         if (tbUsuarioList.isEmpty()) {
-            throw new RuntimeException("Não foi Encontrado Nenhum Registro!!!!");
+            throw new RegistroNaoEncontradoException("Não foi Encontrado Nenhum Registro!!!!");
         }
         return tbUsuarioList
                 .stream()
@@ -32,7 +34,7 @@ public class UsuarioService {
     public UsuarioDto findByIdUsuario(Long id){
         Optional<TbUsuario> tbUsuarioOptional = usuarioRepository.findById(id);
         if (tbUsuarioOptional.isEmpty()) {
-            throw new RuntimeException("Não foi Encontrado Nenhum Registro!!!!");
+            throw new RegistroNaoEncontradoException("Não foi Encontrado Nenhum Registro!!!!");
         }
         return new UsuarioDto(tbUsuarioOptional.get());
     }
@@ -43,7 +45,7 @@ public class UsuarioService {
             modelMapper.map(usuarioDto, tbUsuarioOptional.get());
             return new UsuarioDto(usuarioRepository.save(tbUsuarioOptional.get()));
         } catch (Exception e) {
-            throw new RuntimeException("Não foi Encontrado Nenhum Registro!!!!");
+            throw new RegistroNaoEncontradoException("Não foi Encontrado Nenhum Registro!!!!");
         }
     }
     ///Método de Deletar um Registro (Delete)
@@ -52,8 +54,17 @@ public class UsuarioService {
     }
     /// Método de Criação de um Registro (Create)
     public TbUsuario criateUsuario(UsuarioDto usuarioDto){
+
+        if (usuarioRepository.existsByNomePsn(usuarioDto.getNomePsn())) {
+            throw new DuplicateResourceException(
+                    "Já existe um usuário cadastrado com o nome PSN: "
+                            + usuarioDto.getNomePsn()
+            );
+        }
+
         TbUsuario tbUsuario = modelMapper
                 .map(usuarioDto, TbUsuario.class);
+
         return usuarioRepository.save(tbUsuario);
     }
 

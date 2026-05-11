@@ -4,4 +4,5 @@ import br.com.carlos.iventario.entity.TbUsuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<TbUsuario, Long> {
+    boolean existsByNomePsn(String nomePsn);
 }

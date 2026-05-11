@@ -1,6 +1,7 @@
 package br.com.carlos.iventario.exceptions.globalException;
 
 import br.com.carlos.iventario.exceptions.AcessoNegadoException;
+import br.com.carlos.iventario.exceptions.DuplicateResourceException;
 import br.com.carlos.iventario.exceptions.erroResponse.ErrorResponse;
 import br.com.carlos.iventario.exceptions.RegistroNaoEncontradoException;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,16 @@ public class GlobalExeptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
+    @ExceptionHandler(DuplicateResourceException.class)
+    public ResponseEntity<ErrorResponse> handleUsuarioExistenteException(
+            DuplicateResourceException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(
+                        HttpStatus.CONFLICT.value(),
+                        ex.getMessage()
+                ));
     }
 }
